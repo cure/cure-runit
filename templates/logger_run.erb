@@ -2,4 +2,10 @@
 logdir="<%= @_logdir %>"
 mkdir -p "${logdir}"
 chown <%= @user %>:<%= @group %> "${logdir}"
+if [ ! -e "$logdir/config" ]; then
+  cat <<EOF > $logdir/config
+n1000
+!/bin/gzip
+EOF
+fi
 exec chpst -u <%= @user %>:<%= @group %> svlogd -tt "${logdir}"
