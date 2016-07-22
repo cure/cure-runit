@@ -40,7 +40,7 @@ define runit::service (
   }
 
   # resource defaults
-  File { owner => root, group => root, mode => 644 }
+  File { owner => root, group => root, mode => '644' }
 
   $svbase = "/etc/sv/${name}"
 
@@ -72,7 +72,7 @@ define runit::service (
       },
       source  => $source,
       ensure  => $ensure,
-      mode    => 755,
+      mode    => '755',
       ;
     "${svbase}/finish":
       content => $finish_source ? {
@@ -84,7 +84,7 @@ define runit::service (
       },
       source  => $finish_source,
       ensure  => $ensure,
-      mode    => 755,
+      mode    => '755',
       ;
   }
 
